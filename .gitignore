@@ -1,0 +1,15 @@
+# Виртуальное окружение
+venv/
+env/
+
+# Данные
+data/
+*.csv
+*.xlsx
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Разное
+__pycache__/
+.env
