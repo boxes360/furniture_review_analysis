@@ -20,3 +20,47 @@
 * `src/llm/` — скрипты взаимодействия с API Яндекса (классификатор, расчет метрик, проверка гипотез и массовая обработка).
 * `metrics_report.txt` — зафиксированные метрики качества модели на тестовой выборке (Accuracy > 80%).
 * `data/` — директория для хранения сырых и обработанных данных (добавлена в .gitignore для предотвращения пуша тяжелых файлов).
+
+## Инструкция по запуску
+
+**1. Клонирование репозитория и настройка окружения**
+Клонируйте проект и перейдите в его директорию:
+`bash
+git clone https://github.com/ВАШ_НИК/furniture_review_analysis.git
+cd furniture_review_analysis
+`
+Создайте и активируйте виртуальное окружение, затем установите зависимости:
+`bash
+python -m venv venv
+source venv/bin/activate  # Для Windows: venv\Scripts\activate
+pip install -r requirements.txt
+`
+
+**2. Настройка переменных окружения**
+Создайте в корне проекта файл `.env` на основе примера. В файле должны быть указаны доступы к PostgreSQL и ключи для Yandex Cloud:
+`env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=your_db_name
+DB_USER=your_user
+DB_PASSWORD=your_password
+YANDEX_FOLDER_ID=your_folder_id
+YANDEX_API_KEY=your_api_key
+`
+
+**3. Подготовка данных и базы**
+* Убедитесь, что ваш PostgreSQL сервер запущен.
+* Поместите исходный CSV-файл с сырыми отзывами в папку `data/`.
+
+**4. Запуск пайплайна**
+Запустите скрипт массовой обработки отзывов через LLM (данные будут сохранены в БД):
+`bash
+python src/llm/mass_processor.py
+`
+После завершения обработки выгрузите готовый размеченный датасет с рассчитанными метриками для DataLens:
+`bash
+python src/db/export_csv.py
+`
+
+**5. Визуализация**
+Загрузите полученный файл `full_reviews_labeled.csv` в Yandex DataLens для построения дашборда.
