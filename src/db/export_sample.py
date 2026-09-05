@@ -34,7 +34,7 @@ def export_random_sample():
     # Сохраняем в Excel
     output_path = "data/raw/manual_labeling_sample.xlsx"
     df_sample.to_excel(output_path, index=False)
-    print(f"Готово! Финальный файл для разметки сохранен по пути: {output_path}")
+    print(f"Готово! Файл для разметки сохранен по пути: {output_path}")
 
 if __name__ == "__main__":
     export_random_sample()
