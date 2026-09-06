@@ -2,10 +2,6 @@
 venv/
 env/
 
-# Данные
-data/
-*.csv
-*.xlsx
 
 # Jupyter
 .ipynb_checkpoints/
