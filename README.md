@@ -66,3 +66,4 @@ python src/db/export_csv.py
 
 **5. Визуализация**
 Загрузите полученный файл `full_reviews_labeled.csv` в Yandex DataLens для построения дашборда.
+
